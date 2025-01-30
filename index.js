@@ -13,6 +13,7 @@ app.get("test-ai", async (req, res) => {
     const prompt = "Explain how AI works";
 
     const result = await model.generateContent(prompt);
+    console.log(result.response.text());
 })
 
 app.get("/", (req, res) => {
