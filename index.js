@@ -1,6 +1,6 @@
 require("dotenv").config();
-const express = require('express');
-const cors = require('cors');
+const express = require("express");
+const cors = require("cors");
 const { default: axios } = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
@@ -8,30 +8,34 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "You are a robot and your name is crackaipie. You are powerful and you can help or assist people for make any decision." });
+const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-flash",
+  systemInstruction:
+    "You are a robot and your name is crackaipie. You are powerful and you can help or assist people for make any decision.",
+});
 
 app.get("/test-ai", async (req, res) => {
-    const prompt = req.query?.prompt;
+  const prompt = req.query?.prompt;
 
-    if (!prompt) {
-        res.send({message: "Please provide a prompt in query"});
-        return;
-    }
+  if (!prompt) {
+    res.send({ message: "Please provide a prompt in query" });
+    return;
+  }
 
-    const result = await model.generateContent(prompt);
-    console.log(result.response.text());
-    res.send({ answer: result.response.text() });
-})
+  const result = await model.generateContent(prompt);
+  console.log(result.response.text());
+  res.send({ answer: result.response.text() });
+});
 
 app.get("/rumor-detector", async (req, res) => {
-    const prompt = req.query?.prompt;
+  const prompt = req.query?.prompt;
 
-    if (!prompt) {
-        res.send({message: "Please provide a prompt in query"});
-        return;
-    }
+  if (!prompt) {
+    res.send({ message: "Please provide a prompt in query" });
+    return;
+  }
 
-    const chat = model.startChat({
+  const chat = model.startChat({
     history: [
       {
         role: "user",
@@ -87,7 +91,7 @@ app.get("/rumor-detector", async (req, res) => {
   let result = await chat.sendMessage(prompt);
   const answer = result.response.text();
   res.send({ rumorStatus: answer });
-})
+});
 
 app.get("/generate-json", async (req, res) => {
   const prompt = req.query?.prompt;
@@ -113,6 +117,7 @@ app.get("/generate-detail", async (req, res) => {
     res.send({ message: "Please provide a prompt in query" });
     return;
   }
+
   const response = await axios.get(prompt, { responseType: "arraybuffer" });
 
   const responseData = {
@@ -126,7 +131,7 @@ app.get("/generate-detail", async (req, res) => {
     "Tell the detail of the image",
     responseData,
   ]);
-  
+
   console.log(result.response.text());
 
   res.send({ detail: result.response.text() });
