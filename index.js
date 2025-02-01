@@ -114,6 +114,7 @@ app.get("/generate-detail", async (req, res) => {
     return;
   }
   const response = await axios.get(prompt, { responseType: "arraybuffer" });
+  
   const responseData = {
     inlineData: {
       data: Buffer.from(response.data).toString("base64"),
