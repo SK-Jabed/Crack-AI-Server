@@ -83,6 +83,7 @@ app.get("/rumor-detector", async (req, res) => {
       },
     ],
   });
+  
   let result = await chat.sendMessage(prompt);
   const answer = result.response.text();
   res.send({ rumorStatus: answer });
