@@ -114,7 +114,7 @@ app.get("/generate-detail", async (req, res) => {
     return;
   }
   const response = await axios.get(prompt, { responseType: "arraybuffer" });
-  
+
   const responseData = {
     inlineData: {
       data: Buffer.from(response.data).toString("base64"),
@@ -123,7 +123,7 @@ app.get("/generate-detail", async (req, res) => {
   };
 
   const result = await model.generateContent([
-    "tell the detail of the image",
+    "Tell the detail of the image",
     responseData,
   ]);
   console.log(result.response.text());
