@@ -83,7 +83,7 @@ app.get("/rumor-detector", async (req, res) => {
       },
     ],
   });
-  
+
   let result = await chat.sendMessage(prompt);
   const answer = result.response.text();
   res.send({ rumorStatus: answer });
@@ -110,7 +110,7 @@ app.get("/generate-json", async (req, res) => {
 app.get("/generate-detail", async (req, res) => {
   const prompt = req.query?.prompt;
   if (!prompt) {
-    res.send({ message: "please provide a prompt in query" });
+    res.send({ message: "Please provide a prompt in query" });
     return;
   }
   const response = await axios.get(prompt, { responseType: "arraybuffer" });
