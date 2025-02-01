@@ -126,6 +126,7 @@ app.get("/generate-detail", async (req, res) => {
     "Tell the detail of the image",
     responseData,
   ]);
+  
   console.log(result.response.text());
 
   res.send({ detail: result.response.text() });
