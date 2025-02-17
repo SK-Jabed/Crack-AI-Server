@@ -9,7 +9,7 @@
   "keywords": [],
   "author": "Sheikh Jabed",
   "license": "ISC",
-  "description": "",
+  "description": "This is Server Side of Crack-ai-server",
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.9",

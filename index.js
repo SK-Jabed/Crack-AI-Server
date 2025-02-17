@@ -5,7 +5,7 @@ const { default: axios } = require("axios");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 4000;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({
