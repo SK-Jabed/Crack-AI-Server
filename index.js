@@ -138,7 +138,7 @@ app.get("/generate-detail", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("Let's Crack The Power of AI");
+  res.send("Let's Crack The Power of AI...");
 });
 
 app.listen(port, () => {
