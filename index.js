@@ -137,8 +137,6 @@ app.get("/generate-detail", async (req, res) => {
   res.send({ detail: result.response.text() });
 });
 
-
-
 app.get("/", (req, res) => {
   res.send("Let's Crack The Power of AI...");
 });
